@@ -6,32 +6,35 @@ import {
   Show,
   useBreakpointValue,
 } from "@chakra-ui/react";
+import GameGrid from "./components/GameGrid";
 
 function App() {
   const showSideBar = useBreakpointValue({ base: false, lg: true }); // This can be a state variable to toggle visibility
   return (
-    <Grid
-      templateAreas={{
-        base: `"nav" "main" "footer "`,
-        lg: `"nav nav" "aside main" "footer footer"`,
-      }}
-    >
-      <GridItem area="nav" bg={"blue"}>
-        NavBAr
-      </GridItem>
-      {showSideBar && (
-        <GridItem area="aside" bg={"green"}>
-          SideBar
+    <div>
+      <Grid
+        templateAreas={{
+          base: `"nav" "main" "footer "`,
+          lg: `"nav nav" "aside main" "footer footer"`,
+        }}
+      >
+        <GridItem area="nav" bg={"blue"}>
+          NavBar
         </GridItem>
-      )}
+        {showSideBar && (
+          <GridItem area="aside" bg={"red"}>
+            SideBar
+          </GridItem>
+        )}
 
-      <GridItem area="main" bg={"red"}>
-        Main Content
-      </GridItem>
-      <GridItem area="footer" bg={"pink"}>
-        Footer
-      </GridItem>
-    </Grid>
+        <GridItem area="main" bg={"green"}>
+          <GameGrid />
+        </GridItem>
+        <GridItem area="footer" bg={"pink"}>
+          Footer
+        </GridItem>
+      </Grid>
+    </div>
   );
 }
 
