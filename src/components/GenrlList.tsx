@@ -1,8 +1,20 @@
-import { HStack, List, ListItem, Image, Text, Spinner } from "@chakra-ui/react";
-import useGenre from "../hooks/useGenre";
+import {
+  HStack,
+  List,
+  ListItem,
+  Image,
+  Text,
+  Spinner,
+  Button,
+} from "@chakra-ui/react";
+import useGenre, { type Genre } from "../hooks/useGenre";
 import getOptimizedImageUrl from "../services/image-url";
 
-const GenrlList = () => {
+interface GenrlListProps {
+  onSelectGenre: (genre: Genre) => void;
+}
+
+const GenrlList = ({ onSelectGenre }: GenrlListProps) => {
   const { data, loading, error } = useGenre();
   if (error) return null;
 
@@ -19,7 +31,16 @@ const GenrlList = () => {
               padding={"5px"}
               src={getOptimizedImageUrl(genre.image_background)}
             />
-            <Text fontSize={"lg"}> {genre.name}</Text>
+            <Button
+              fontSize={"lg"}
+              variant={"ghost"}
+              onClick={() => {
+                onSelectGenre(genre);
+              }}
+            >
+              {" "}
+              {genre.name}
+            </Button>
           </HStack>
         </ListItem>
       ))}

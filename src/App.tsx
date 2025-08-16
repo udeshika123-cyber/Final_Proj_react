@@ -8,9 +8,14 @@ import {
 } from "@chakra-ui/react";
 import GameGrid from "./components/GameGrid";
 import GenrlList from "./components/GenrlList";
+import { useEffect, useState } from "react";
+import type { Genre } from "./hooks/useGenre";
 
 function App() {
-  const showSideBar = useBreakpointValue({ base: false, lg: true }); // This can be a state variable to toggle visibility
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+
+  const showSideBar = useBreakpointValue({ base: false, lg: true });
+
   return (
     <div>
       <Grid
@@ -22,12 +27,14 @@ function App() {
         <GridItem area="nav">NavBar</GridItem>
         {showSideBar && (
           <GridItem area="aside" paddingX={5}>
-            <GenrlList />
+            <GenrlList
+              onSelectGenre={(genre: Genre) => setSelectedGenre(genre)}
+            />
           </GridItem>
         )}
 
         <GridItem area="main">
-          <GameGrid />
+          <GameGrid selectedGenre={selectedGenre} />
         </GridItem>
         <GridItem area="footer" bg={"pink"}>
           Footer
