@@ -7,6 +7,7 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import GameGrid from "./components/GameGrid";
+import GenrlList from "./components/GenrlList";
 
 function App() {
   const showSideBar = useBreakpointValue({ base: false, lg: true }); // This can be a state variable to toggle visibility
@@ -22,8 +23,8 @@ function App() {
           NavBar
         </GridItem>
         {showSideBar && (
-          <GridItem area="aside" bg={"red"}>
-            SideBar
+          <GridItem area="aside">
+            <GenrlList />
           </GridItem>
         )}
 
