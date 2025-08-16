@@ -19,11 +19,9 @@ function App() {
           lg: `"nav nav" "aside main" "footer footer"`,
         }}
       >
-        <GridItem area="nav" bg={"blue"}>
-          NavBar
-        </GridItem>
+        <GridItem area="nav">NavBar</GridItem>
         {showSideBar && (
-          <GridItem area="aside">
+          <GridItem area="aside" paddingX={5}>
             <GenrlList />
           </GridItem>
         )}
