@@ -3,8 +3,8 @@ import logo from "../../assets/logo1.png";
 
 const NavBar = () => {
   return (
-    <HStack>
-      <Image src={logo} alt="Logo" boxSize={20} />
+    <HStack padding={"20px"}>
+      <Image src={logo} height={{ base: "40px", md: "50px", lg: "60px" }} />
     </HStack>
   );
 };

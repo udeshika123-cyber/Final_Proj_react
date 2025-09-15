@@ -10,6 +10,7 @@ import GameGrid from "./components/GameGrid";
 import GenrlList from "./components/GenrlList";
 import { useEffect, useState } from "react";
 import type { Genre } from "./hooks/useGenre";
+import NavBar from "./components/ui/NavBar";
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
@@ -24,9 +25,28 @@ function App() {
           lg: `"nav nav" "aside main" "footer footer"`,
         }}
       >
-        <GridItem area="nav"></GridItem>
+        <GridItem
+          area="nav"
+          position="sticky"
+          zIndex={1}
+          top={0}
+          bg="black"
+        ></GridItem>
+
         {showSideBar && (
-          <GridItem area="aside" paddingX={5}>
+          <GridItem
+            area="aside"
+            paddingX={5}
+            position={"sticky"}
+            top={0}
+            height={"85vh"}
+            overflowY={"auto"}
+            css={{
+              "&::-webkit-scrollbar": { display: "none" },
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+            }}
+          >
             <GenrlList
               onSelectGenre={(genre: Genre) => setSelectedGenre(genre)}
             />
