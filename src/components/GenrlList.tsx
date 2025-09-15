@@ -12,9 +12,10 @@ import getOptimizedImageUrl from "../services/image-url";
 
 interface GenrlListProps {
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre?: Genre | null;
 }
 
-const GenrlList = ({ onSelectGenre }: GenrlListProps) => {
+const GenrlList = ({ onSelectGenre, selectedGenre }: GenrlListProps) => {
   const { data, loading, error } = useGenre();
   if (error) return null;
 
@@ -32,7 +33,8 @@ const GenrlList = ({ onSelectGenre }: GenrlListProps) => {
               src={getOptimizedImageUrl(genre.image_background)}
             />
             <Button
-              fontSize={"lg"}
+              fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+              fontSize={genre.id === selectedGenre?.id ? "xl" : "md"}
               variant={"ghost"}
               onClick={() => {
                 onSelectGenre(genre);
